@@ -65,7 +65,7 @@ public abstract class AbstractTencentCOS extends AbstractObjectStorage {
     }
 
     @Override
-    public com.github.lugew.objectstorage.core.ObjectListing listObjects(com.github.lugew.objectstorage.core.ListObjectsRequest<ListObjectsRequest> listObjectsRequest) {
-        return new TencentObjectListingAdaptor(client.listObjects(listObjectsRequest.get()));
+    public com.github.lugew.objectstorage.core.ObjectListing listObjects(com.github.lugew.objectstorage.core.ListObjectsRequest listObjectsRequest) {
+        return new TencentObjectListingAdaptor(client.listObjects(listObjectsRequest));
     }
 }

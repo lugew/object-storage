@@ -1,14 +1,13 @@
 package com.github.lugew.objectstorage.core;
 
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author 夏露桂
  * @since 2021/2/5 15:59
  */
-public interface ObjectListing extends Serializable {
+public interface ObjectListing<O> extends Adaptor<O> {
 
     List<ObjectSummary> getObjectSummaries();
 

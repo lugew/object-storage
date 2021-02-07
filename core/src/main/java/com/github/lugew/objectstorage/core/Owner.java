@@ -4,7 +4,7 @@ package com.github.lugew.objectstorage.core;
  * @author 夏露桂
  * @since 2021/2/5 15:18
  */
-public interface Owner {
+public interface Owner<O> extends Adaptor<O> {
     String toString();
 
     String getId();

@@ -6,7 +6,7 @@ import com.github.lugew.objectstorage.core.Owner;
  * @author 夏露桂
  * @since 2021/2/7 15:21
  */
-public class OwnerAdaptor<A> extends AbstractAdaptor<A> implements Owner {
+public class OwnerAdaptor<A> extends AbstractAdaptor<A> implements Owner<A> {
     public OwnerAdaptor(A adaptee) {
         super(adaptee);
     }

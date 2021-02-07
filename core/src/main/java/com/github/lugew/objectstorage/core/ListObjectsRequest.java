@@ -1,12 +1,10 @@
 package com.github.lugew.objectstorage.core;
 
-import java.io.Serializable;
-
 /**
  * @author 夏露桂
  * @since 2021/2/5 16:27
  */
-public interface ListObjectsRequest extends Serializable {
+public interface ListObjectsRequest<L> extends Adaptor<L> {
 
     String getBucketName();
 

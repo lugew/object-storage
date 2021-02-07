@@ -10,12 +10,12 @@ import java.util.Date;
  * @author 夏露桂
  * @since 2021/2/4 16:35
  */
-public interface Bucket extends Serializable {
+public interface Bucket<A, O> extends Serializable, Adaptor<A> {
     String toString();
 
-    Owner getOwner();
+    Owner<O> getOwner();
 
-    void setOwner(Owner owner);
+    void setOwner(Owner<O> owner);
 
     Date getCreationDate();
 
