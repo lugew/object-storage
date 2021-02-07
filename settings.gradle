@@ -1,0 +1,4 @@
+rootProject.name = 'object-storage'
+include 'core'
+include 'tencent-spring-boot-starter'
+project(':tencent-spring-boot-starter').projectDir = file("$rootDir/starter/tencent-spring-boot-starter")
