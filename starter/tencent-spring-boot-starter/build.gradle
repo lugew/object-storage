@@ -2,17 +2,9 @@ plugins {
     id 'org.springframework.boot' version '2.3.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 }
-ext {
-//    minioVersion = '8.0.3'
-    cosVersion = '5.6.31'
-//    ossVersion = "3.11.2"
-}
 dependencies {
     api(
-            project(":core"),
-//            "io.minio:minio:${minioVersion}",
-            "com.qcloud:cos_api:${cosVersion}",
-//            "com.aliyun.oss:aliyun-sdk-oss:${ossVersion}",
+            project(":tencent"),
             "org.springframework.boot:spring-boot-starter",
     )
     annotationProcessor(
