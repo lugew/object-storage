@@ -1,14 +1,8 @@
 package com.github.lugew.objectstorage.tencentspringbootstarter;
 
 
-import com.github.lugew.objectstorage.core.ObjectMetadata;
-import com.qcloud.cos.model.PutObjectRequest;
+import com.qcloud.cos.COSClient;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-import java.io.File;
-import java.io.InputStream;
 
 /**
  * 简单腾讯对象存储
@@ -16,34 +10,16 @@ import java.io.InputStream;
  * @author LuGew
  * @since 2020/10/22
  */
-@Component
 @Slf4j
-public class SimpleTencentCOS extends com.lugew.wsinsin.objectstorage.AbstractTencentCOS {
+public class SimpleTencentCOS extends AbstractTencentCOS {
     public SimpleTencentCOS(
-            @Value("${object-storage.tencent.secret-id}") String secretId,
-            @Value("${object-storage.tencent.secret-key}") String secretKey,
-            @Value("${object-storage.tencent.bucket-name}") String bucketName,
-            @Value("${object-storage.tencent.region}") String region,
-            @Value("${object-storage.tencent.url-prefix}") String urlPrefix
+            String url,
+            String id,
+            String key,
+            String bucketName,
+            String region,
+            COSClient client
     ) {
-        super(urlPrefix, secretId, secretKey, bucketName, region);
-    }
-
-    @Override
-    public java.lang.Object put(String key, File file) {
-        try {
-            return client.putObject(new PutObjectRequest(getBucket(), key, file));
-        } catch (Exception e) {
-            throw new Exception(Error.UPLOAD_FAILED.getCode(), e);
-        }
-    }
-
-    @Override
-    public java.lang.Object put(String key, InputStream inputStream) {
-        try {
-            return client.putObject(new PutObjectRequest(getBucket(), key, inputStream, new ObjectMetadata()));
-        } catch (Exception e) {
-            throw new Exception(Error.UPLOAD_FAILED.getCode(), e);
-        }
+        super(url, id, key, bucketName, region, client);
     }
 }

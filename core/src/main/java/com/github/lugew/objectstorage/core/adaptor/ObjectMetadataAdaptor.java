@@ -8,7 +8,7 @@ import java.util.Map;
  * @author 夏露桂
  * @since 2021/2/7 16:06
  */
-public class ObjectMetadataAdaptor<A> extends AbstractAdaptor<A> implements ObjectMetadata {
+public class ObjectMetadataAdaptor<A> extends AbstractAdaptor<A> implements ObjectMetadata<A> {
     public ObjectMetadataAdaptor(A adaptee) {
         super(adaptee);
     }

@@ -1,0 +1,10 @@
+server:
+  port: 18005
+
+object-storage:
+  tencent:
+    url-prefix: https://mimovr-audio-test-1303101432.cos.ap-shanghai.myqcloud.com/
+    secret-id: AKIDIMuENOVwVHqY8ZrEDw7E9VhkgOrAdfaG
+    secret-key: bwlhQ0Vlob7sOitFMDnAUVPffky0oNBO
+    bucket-name: mimovr-audio-test-1303101432
+    region: ap-shanghai

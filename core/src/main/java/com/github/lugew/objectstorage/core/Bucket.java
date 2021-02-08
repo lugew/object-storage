@@ -1,7 +1,6 @@
 package com.github.lugew.objectstorage.core;
 
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +9,7 @@ import java.util.Date;
  * @author 夏露桂
  * @since 2021/2/4 16:35
  */
-public interface Bucket<A, O> extends Serializable, Adaptor<A> {
+public interface Bucket<A, O> extends Adaptor<A> {
     String toString();
 
     Owner<O> getOwner();

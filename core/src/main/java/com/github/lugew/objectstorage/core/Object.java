@@ -7,14 +7,14 @@ import java.io.InputStream;
  * @author 夏露桂
  * @since 2021/2/4 16:49
  */
-public interface Object {
-    ObjectMetadata getObjectMetadata();
+public interface Object<A, OM, OIS> extends Adaptor<A> {
+    ObjectMetadata<OM> getObjectMetadata();
 
-    void setObjectMetadata(ObjectMetadata metadata);
+    void setObjectMetadata(ObjectMetadata<OM> metadata);
 
-    ObjectInputStream getObjectContent();
+    ObjectInputStream<OIS> getObjectContent();
 
-    void setObjectContent(ObjectInputStream objectContent);
+    void setObjectContent(ObjectInputStream<OIS> objectContent);
 
     void setObjectContent(InputStream objectContent);
 

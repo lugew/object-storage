@@ -5,6 +5,7 @@ import com.github.lugew.objectstorage.core.Adaptor;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
+import java.util.Arrays;
 
 /**
  * @author 夏露桂

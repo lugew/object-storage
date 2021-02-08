@@ -1,14 +1,13 @@
 package com.github.lugew.objectstorage.core;
 
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author 夏露桂
  * @since 2021/2/5 16:04
  */
-public interface ObjectSummary extends Serializable {
+public interface ObjectSummary<A, O> extends Adaptor<A> {
 
     String getBucketName();
 
@@ -35,9 +34,9 @@ public interface ObjectSummary extends Serializable {
 
     void setLastModified(Date lastModified);
 
-    Owner getOwner();
+    Owner<O> getOwner();
 
-    void setOwner(Owner owner);
+    void setOwner(Owner<O> owner);
 
     String getStorageClass();
 

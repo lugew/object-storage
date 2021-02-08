@@ -9,8 +9,7 @@ import java.util.Date;
  * @author 夏露桂
  * @since 2021/2/7 15:15
  */
-public class ObjectSummaryAdaptor<A, O> extends AbstractAdaptor<A> implements ObjectSummary<O> {
-
+public class ObjectSummaryAdaptor<A, O> extends AbstractAdaptor<A> implements ObjectSummary<A, O> {
     public ObjectSummaryAdaptor(A adaptee) {
         super(adaptee);
     }
@@ -66,12 +65,12 @@ public class ObjectSummaryAdaptor<A, O> extends AbstractAdaptor<A> implements Ob
     }
 
     @Override
-    public Owner getOwner() {
-        return (Owner) invoke();
+    public Owner<O> getOwner() {
+        return new OwnerAdaptor<>((O) invoke());
     }
 
     @Override
-    public void setOwner(Owner owner) {
+    public void setOwner(Owner<O> owner) {
         invoke(owner);
     }
 

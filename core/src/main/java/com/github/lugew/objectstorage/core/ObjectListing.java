@@ -7,9 +7,9 @@ import java.util.List;
  * @author 夏露桂
  * @since 2021/2/5 15:59
  */
-public interface ObjectListing<O> extends Adaptor<O> {
+public interface ObjectListing<OL, OS, O> extends Adaptor<OL> {
 
-    List<ObjectSummary> getObjectSummaries();
+    List<ObjectSummary<OS, O>> getObjectSummaries();
 
     List<String> getCommonPrefixes();
 

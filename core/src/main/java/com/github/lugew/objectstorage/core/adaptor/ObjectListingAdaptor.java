@@ -4,19 +4,20 @@ import com.github.lugew.objectstorage.core.ObjectListing;
 import com.github.lugew.objectstorage.core.ObjectSummary;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 夏露桂
  * @since 2021/2/7 15:07
  */
-public class ObjectListingAdaptor<A, O> extends AbstractAdaptor<A> implements ObjectListing<O> {
+public class ObjectListingAdaptor<A, OS, O> extends AbstractAdaptor<A> implements ObjectListing<A, OS, O> {
     public ObjectListingAdaptor(A adaptee) {
         super(adaptee);
     }
 
     @Override
-    public List<ObjectSummary<O>> getObjectSummaries() {
-        return (List<ObjectSummary<O>>) invoke();
+    public List<ObjectSummary<OS, O>> getObjectSummaries() {
+        return ((List<OS>) invoke()).stream().map(ObjectSummaryAdaptor<OS, O>::new).collect(Collectors.toList());
     }
 
     @Override

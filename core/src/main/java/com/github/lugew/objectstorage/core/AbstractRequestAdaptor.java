@@ -1,14 +1,14 @@
-package com.github.lugew.objectstorage.core.adaptor;
+package com.github.lugew.objectstorage.core;
 
-import com.github.lugew.objectstorage.core.GetObjectRequest;
+import com.github.lugew.objectstorage.core.adaptor.AbstractAdaptor;
 
 /**
  * @author 夏露桂
- * @since 2021/2/7 17:05
+ * @since 2021/2/8 11:05
  */
-public class GetObjectRequestAdaptor<A> extends AbstractAdaptor<A> implements GetObjectRequest<A> {
+public abstract class AbstractRequestAdaptor<A> extends AbstractAdaptor<A> implements Request<A> {
 
-    public GetObjectRequestAdaptor(A adaptee) {
+    public AbstractRequestAdaptor(A adaptee) {
         super(adaptee);
     }
 

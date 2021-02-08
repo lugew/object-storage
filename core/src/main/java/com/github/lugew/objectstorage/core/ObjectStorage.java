@@ -1,5 +1,7 @@
 package com.github.lugew.objectstorage.core;
 
+import com.github.lugew.objectstorage.core.adaptor.ObjectAdaptor;
+
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
@@ -17,7 +19,7 @@ public interface ObjectStorage {
      *
      * @return 桶列表
      */
-    List<Bucket> listBuckets();
+    List<Bucket<?, ?>> listBuckets();
 
     /**
      * 创建桶
@@ -25,7 +27,7 @@ public interface ObjectStorage {
      * @param bucketName 桶名称
      * @return 桶对象
      */
-    Bucket createBucket(String bucketName);
+    Bucket<?, ?> createBucket(String bucketName);
 
     /**
      * 判断桶是否存在
@@ -43,22 +45,22 @@ public interface ObjectStorage {
     void deleteBucket(String bucketName);
 
 
-    ObjectListing listObjects(ListObjectsRequest listObjectsRequest);
+    ObjectListing<?, ?, ?> listObjects(ListObjectsRequest<?> listObjectsRequest);
 
 
-    PutObjectResult putObject(String bucketName, String key, File file);
+    PutObjectResult<?, ?> putObject(String bucketName, String key, File file);
 
-    PutObjectResult putObject(String bucketName, String key, InputStream input, ObjectMetadata metadata);
-
-
-    PutObjectResult putObject(PutObjectResult request);
+    PutObjectResult<?, ?> putObject(String bucketName, String key, InputStream input, ObjectMetadata<?> metadata);
 
 
-    ObjectMetadata getObjectMetadata(String bucketName, String key);
+    PutObjectResult<?, ?> putObject(PutObjectRequest<?> request);
 
-    GetObjectRequest getObject(GetObjectRequest getObjectRequest);
 
-    ObjectMetadata getObject(GetObjectRequest getObjectRequest, File destinationFile);
+    ObjectMetadata<?> getObjectMetadata(String bucketName, String key);
+
+    ObjectAdaptor<?, ?, ?> getObject(GetObjectRequest<?> getObjectRequest);
+
+    ObjectMetadata<?> getObject(GetObjectRequest<?> getObjectRequest, File destinationFile);
 
     String getUrl();
 
@@ -71,6 +73,5 @@ public interface ObjectStorage {
     String getRegion();
 
     Type getType();
-
 
 }

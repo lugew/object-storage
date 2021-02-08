@@ -16,7 +16,7 @@ public class BucketAdaptor<A, O> extends AbstractAdaptor<A> implements Bucket<A,
 
     @Override
     public Owner<O> getOwner() {
-        return new OwnerAdaptor((O) invoke()) ;
+        return new OwnerAdaptor<>((O) invoke());
     }
 
     @Override

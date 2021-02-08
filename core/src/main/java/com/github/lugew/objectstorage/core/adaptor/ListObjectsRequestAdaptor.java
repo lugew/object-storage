@@ -6,7 +6,7 @@ import com.github.lugew.objectstorage.core.ListObjectsRequest;
  * @author 夏露桂
  * @since 2021/2/5 16:27
  */
-public class ListObjectsRequestAdaptor<A> extends AbstractAdaptor<A> implements ListObjectsRequest {
+public class ListObjectsRequestAdaptor<A> extends AbstractAdaptor<A> implements ListObjectsRequest<A> {
 
 
     public ListObjectsRequestAdaptor(A adaptee) {

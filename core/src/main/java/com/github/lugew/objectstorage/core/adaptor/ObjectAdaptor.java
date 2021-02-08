@@ -10,28 +10,28 @@ import java.io.InputStream;
  * @author 夏露桂
  * @since 2021/2/7 16:55
  */
-public class ObjectAdaptor<A> extends AbstractAdaptor<A> implements Object {
+public class ObjectAdaptor<A, OM, OIS> extends AbstractAdaptor<A> implements Object<A, OM, OIS> {
     public ObjectAdaptor(A adaptee) {
         super(adaptee);
     }
 
     @Override
-    public ObjectMetadata getObjectMetadata() {
-        return (ObjectMetadata) invoke();
+    public ObjectMetadata<OM> getObjectMetadata() {
+        return new ObjectMetadataAdaptor<>((OM) invoke());
     }
 
     @Override
-    public void setObjectMetadata(ObjectMetadata metadata) {
+    public void setObjectMetadata(ObjectMetadata<OM> metadata) {
         invoke(metadata);
     }
 
     @Override
-    public ObjectInputStream getObjectContent() {
-        return (ObjectInputStream) invoke();
+    public ObjectInputStream<OIS> getObjectContent() {
+        return new ObjectInputStreamAdaptor<>((OIS) invoke());
     }
 
     @Override
-    public void setObjectContent(ObjectInputStream objectContent) {
+    public void setObjectContent(ObjectInputStream<OIS> objectContent) {
         invoke(objectContent);
     }
 
