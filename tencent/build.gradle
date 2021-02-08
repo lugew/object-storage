@@ -1,0 +1,12 @@
+ext {
+    cosVersion = '5.6.31'
+}
+dependencies {
+    api(
+            project(":core"),
+            "com.qcloud:cos_api:${cosVersion}",
+    )
+}
+jar {
+    enabled(true)
+}
