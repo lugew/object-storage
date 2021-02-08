@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(Properties.class)
 @RequiredArgsConstructor
 @Slf4j
-@ConditionalOnProperty(prefix = "object-storage", name = "tencent", havingValue = "true")
+@ConditionalOnProperty(prefix = "object-storage.tencent", name = "enabled", havingValue = "true")
 public class AutoConfiguration {
     private final Properties properties;
 
