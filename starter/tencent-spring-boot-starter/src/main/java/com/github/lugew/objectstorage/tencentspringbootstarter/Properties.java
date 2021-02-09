@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 2021/2/8 17:03
  */
 
-@ConfigurationProperties(prefix = "object-storage")
+@ConfigurationProperties(prefix = "object-storage.tencent")
 @Getter
 @Setter
 public class Properties {
