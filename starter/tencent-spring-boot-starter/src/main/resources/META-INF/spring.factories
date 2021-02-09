@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-    com.github.lugew.objectstorage.tencentspringbootstarter.AutoConfiguration
+    com.lugew.objectstorage.tencentspringbootstarter.AutoConfiguration

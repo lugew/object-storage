@@ -12,7 +12,7 @@ allprojects {
     apply plugin: 'idea'
     apply plugin: 'java-library'
 
-    group = 'com.github.lugew'
+    group = 'com.lugew'
     version = '1.0.0'
     sourceCompatibility = '11'
     targetCompatibility = '11'
