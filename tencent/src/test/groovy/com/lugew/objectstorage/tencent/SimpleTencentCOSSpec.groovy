@@ -1,6 +1,6 @@
 package com.lugew.objectstorage.tencent
 
-import com.github.lugew.objectstorage.core.ObjectStorage
+import com.lugew.objectstorage.core.ObjectStorage
 import com.qcloud.cos.COSClient
 import com.qcloud.cos.exception.CosClientException
 import com.qcloud.cos.exception.CosServiceException
