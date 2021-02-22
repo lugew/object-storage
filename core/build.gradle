@@ -1,6 +1,11 @@
 jar {
     enabled(true)
 }
+ext {
+    s3Version = '2.16.3'
+}
 dependencies {
-
+    api(
+            "software.amazon.awssdk:s3:${s3Version}"
+    )
 }

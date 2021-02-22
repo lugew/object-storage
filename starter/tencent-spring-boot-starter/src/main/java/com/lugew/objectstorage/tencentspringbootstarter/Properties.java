@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 public class Properties {
-    private String url;
+    private String uri;
     private String id;
     private String key;
     private String bucketName;

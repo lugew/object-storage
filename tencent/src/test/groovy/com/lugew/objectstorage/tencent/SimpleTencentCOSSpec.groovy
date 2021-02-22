@@ -1,10 +1,11 @@
 package com.lugew.objectstorage.tencent
 
 import com.lugew.objectstorage.core.ObjectStorage
-import com.qcloud.cos.COSClient
-import com.qcloud.cos.exception.CosClientException
-import com.qcloud.cos.exception.CosServiceException
-import com.qcloud.cos.model.Bucket
+import software.amazon.awssdk.awscore.exception.AwsServiceException
+import software.amazon.awssdk.core.exception.SdkClientException
+import software.amazon.awssdk.core.sync.RequestBody
+import software.amazon.awssdk.services.s3.S3Client
+import software.amazon.awssdk.services.s3.model.PutObjectRequest
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Subject
@@ -22,38 +23,30 @@ class SimpleTencentCOSSpec extends Specification {
     def key = "asdfasdfasdfMDnAUVPffky0oNBO"
     def bucketName = "adfafdsa"
     def region = "ap-shanghai"
-    COSClient client = Mock()
+    S3Client client = Mock()
 
     def setup() {
         objectStorage = new SimpleTencentObjectStorage(url, id, key, bucketName, region, client)
-
     }
 
-    def "创建桶失败抛出异常"() {
+    def "上传文件失败抛出异常"() {
         given: "指定抛出异常类型"
-        client.createBucket(_ as String) >> { throw type.getDeclaredConstructor(String.class).newInstance(result) }
+        File file = new File("src/test/groovy/com/lugew/objectstorage/tencent/file.txt")
+        client.putObject(_ as PutObjectRequest, _ as RequestBody) >> {
+            throw content
+        }
 
-        when: "创建桶"
-        objectStorage.createBucket("123")
+        when: "上传"
+        objectStorage.putObject("file.txt", file)
 
         then: "获取到异常"
         def exception = thrown(type)
         with(exception) {
-            message == result + addtion
+            message == result
         }
         where: "异常例子"
-        type                      || result  || addtion
-        CosClientException.class  || "error" || ""
-        CosServiceException.class || "cos"   || " (Status Code: 0; Error Code: null; Request ID: null); Trace ID: null"
-    }
-
-    def "创建桶返回的接口可以正常使用"() {
-        given: "创建桶返回桶对象"
-        String bucketName = "bucketTestName"
-        client.createBucket(_ as String) >> new Bucket(bucketName)
-        expect: "桶对象正常"
-        with(objectStorage.createBucket(bucketName)) {
-            getName() == bucketName
-        }
+        type                      || content                                                      || result
+        AwsServiceException.class || AwsServiceException.class.builder().message("error").build() || "error"
+        SdkClientException.class  || SdkClientException.class.builder().message("cos").build()    || "cos"
     }
 }

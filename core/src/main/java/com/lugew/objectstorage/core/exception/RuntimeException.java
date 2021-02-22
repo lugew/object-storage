@@ -15,14 +15,18 @@ public class RuntimeException extends java.lang.RuntimeException {
     public RuntimeException() {
     }
 
-    public RuntimeException(String message) {
+    public RuntimeException(String key, String message) {
         super(message);
-        this.key = message;
+        this.key = key;
     }
 
-    public RuntimeException(String message, Throwable cause) {
+    public RuntimeException(String message) {
+        super(message);
+    }
+
+    public RuntimeException(String key, String message, Throwable cause) {
         super(message, cause);
-        this.key = message;
+        this.key = key;
     }
 
     public RuntimeException(Throwable cause) {
@@ -31,5 +35,18 @@ public class RuntimeException extends java.lang.RuntimeException {
 
     public RuntimeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
+    }
+
+    public RuntimeException(String key, Throwable cause) {
+        super(cause);
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

@@ -1,17 +1,18 @@
 package com.lugew.objectstorage.tencentspringbootstarter;
 
 import com.lugew.objectstorage.tencent.SimpleTencentObjectStorage;
-import com.qcloud.cos.COSClient;
-import com.qcloud.cos.ClientConfig;
-import com.qcloud.cos.auth.BasicCOSCredentials;
-import com.qcloud.cos.auth.COSCredentials;
-import com.qcloud.cos.region.Region;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3Client;
+
+import java.net.URI;
 
 @Configuration
 @EnableConfigurationProperties(Properties.class)
@@ -23,21 +24,23 @@ public class AutoConfiguration {
 
     @Bean
     public SimpleTencentObjectStorage simpleTencentObjectStorage() {
-        String url = properties.getUrl();
+        String uri = properties.getUri();
         String id = properties.getId();
         String key = properties.getKey();
         String bucketName = properties.getBucketName();
         String region = properties.getRegion();
-        COSCredentials credentials = new BasicCOSCredentials(id, key);
-        ClientConfig config = new ClientConfig(new Region(region));
-        COSClient client = new COSClient(credentials, config);
+
         return new SimpleTencentObjectStorage(
-                url,
+                uri,
                 id,
                 key,
                 bucketName,
                 region,
-                client
+                S3Client.builder()
+                        .endpointOverride(URI.create(uri))
+                        .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(id, key)))
+                        .region(Region.of(region))
+                        .build()
         );
     }
 }

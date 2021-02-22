@@ -1,8 +1,8 @@
 package com.lugew.objectstorage.tencent;
 
 
-import com.qcloud.cos.COSClient;
 import lombok.extern.slf4j.Slf4j;
+import software.amazon.awssdk.services.s3.S3Client;
 
 /**
  * 简单腾讯对象存储
@@ -18,7 +18,7 @@ public class SimpleTencentObjectStorage extends AbstractTencentObjectStorage {
             String key,
             String bucketName,
             String region,
-            COSClient client
+            S3Client client
     ) {
         super(url, id, key, bucketName, region, client);
     }

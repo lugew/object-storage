@@ -1,10 +1,11 @@
 package com.lugew.objectstorage.core;
 
-import com.lugew.objectstorage.core.adaptor.ObjectAdaptor;
+
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 import java.io.File;
 import java.io.InputStream;
-import java.util.List;
 
 /**
  * 对象存储器接口，
@@ -14,55 +15,14 @@ import java.util.List;
  * @since 2021/1/29 18:16
  */
 public interface ObjectStorage {
-    /**
-     * 获取所有桶
-     *
-     * @return 桶列表
-     */
-    List<Bucket<?, ?>> listBuckets();
 
-    /**
-     * 创建桶
-     *
-     * @param bucketName 桶名称
-     * @return 桶对象
-     */
-    Bucket<?, ?> createBucket(String bucketName);
+    PutObjectResponse putObject(String key, File file);
 
-    /**
-     * 判断桶是否存在
-     *
-     * @param bucketName 桶名称
-     * @return true：存在，false：不存在
-     */
-    boolean doesBucketExist(String bucketName);
+    PutObjectResponse putObject(String key, InputStream input);
 
-    /**
-     * 删除桶
-     *
-     * @param bucketName 桶名称
-     */
-    void deleteBucket(String bucketName);
+    S3Client getClient();
 
-
-    ObjectListing<?, ?, ?> listObjects(ListObjectsRequest<?> listObjectsRequest);
-
-
-    PutObjectResult<?, ?> putObject(String bucketName, String key, File file);
-
-    PutObjectResult<?, ?> putObject(String bucketName, String key, InputStream input, ObjectMetadata<?> metadata);
-
-
-    PutObjectResult<?, ?> putObject(PutObjectRequest<?> request);
-
-
-    ObjectMetadata<?> getObjectMetadata(String bucketName, String key);
-
-    ObjectAdaptor<?, ?, ?> getObject(GetObjectRequest<?> getObjectRequest);
-
-    ObjectMetadata<?> getObject(GetObjectRequest<?> getObjectRequest, File destinationFile);
-
-    String getUrl();
+    String getUri();
 
     String getId();
 
