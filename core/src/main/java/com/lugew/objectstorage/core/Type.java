@@ -7,6 +7,7 @@ package com.lugew.objectstorage.core;
  * @since 2021/1/29 18:17
  */
 public enum Type {
+    UNKNOWN,
     ALIYUN,
     TENCENT,
     MINIO

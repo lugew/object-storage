@@ -1,8 +1,9 @@
 package com.lugew.objectstorage.core;
 
 
+import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.PutObjectResponse;
+import software.amazon.awssdk.services.s3.model.*;
 
 import java.io.File;
 import java.io.InputStream;
@@ -16,9 +17,17 @@ import java.io.InputStream;
  */
 public interface ObjectStorage {
 
+    CreateBucketResponse createBucket(String name);
+
+    DeleteBucketResponse deleteBucket(String name);
+
     PutObjectResponse putObject(String key, File file);
 
     PutObjectResponse putObject(String key, InputStream input);
+
+    ResponseInputStream<GetObjectResponse> getObject(String key);
+
+    DeleteObjectResponse deleteObject(String key);
 
     S3Client getClient();
 
