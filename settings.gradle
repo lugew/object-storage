@@ -3,3 +3,7 @@ include 'core'
 include 'tencent'
 include 'tencent-spring-boot-starter'
 project(':tencent-spring-boot-starter').projectDir = file("$rootDir/starter/tencent-spring-boot-starter")
+
+include 'aliyun'
+include 'aliyun-spring-boot-starter'
+project(':aliyun-spring-boot-starter').projectDir = file("$rootDir/starter/aliyun-spring-boot-starter")

@@ -1,4 +1,4 @@
-package com.lugew.objectstorage.tencentspringbootstarter;
+package com.lugew.objectstorage.aliyunspringbootstarter;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 2021/2/8 17:03
  */
 
-@ConfigurationProperties(prefix = "object-storage.tencent")
+@ConfigurationProperties(prefix = "object-storage.aliyun")
 public class Properties extends com.lugew.objectstorage.core.Properties {
 
 }

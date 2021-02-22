@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.lugew.objectstorage.aliyunspringbootstarter.AutoConfiguration
