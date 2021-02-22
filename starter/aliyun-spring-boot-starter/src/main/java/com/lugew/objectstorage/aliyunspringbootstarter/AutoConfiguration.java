@@ -30,6 +30,7 @@ public class AutoConfiguration {
         String bucketName = properties.getBucketName();
         String region = properties.getRegion();
 
+
         return new AliyunObjectStorage(
                 uri,
                 id,
